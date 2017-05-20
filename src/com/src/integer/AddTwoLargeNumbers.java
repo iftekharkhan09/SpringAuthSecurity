@@ -1,9 +1,12 @@
 package com.src.integer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddTwoLargeNumbers {
 	public static void main(String[] args) {
-		String firstNumber = "200";
-		String secondNumber = "300";
+		String firstNumber = "999";
+		String secondNumber = "9999999";
 		StringBuffer result = new StringBuffer();
 		AddTwoLargeNumbers addTwoLargeNumbers = new AddTwoLargeNumbers();
 		if (addTwoLargeNumbers.getlargerInteger(firstNumber, secondNumber).equals(firstNumber)) {
@@ -29,37 +32,42 @@ public class AddTwoLargeNumbers {
 		else if (firstNumber.equals("0"))
 			return secondNumber;
 		else {
+			int carry = 0;
 			if (firstNumber != null && secondNumber != null && firstNumber.length() > 0 && secondNumber.length() > 0) {
 				StringBuffer secondNum = new StringBuffer(reverse(secondNumber));
 				StringBuffer firstNum = new StringBuffer(reverse(firstNumber));
-				StringBuffer resultantNumber = new StringBuffer();
-				int i;
-				for (i = 0; i < secondNumber.length(); i++) {
-					int firstNumber1 = new Integer("" + firstNum.charAt(i));
-					int secondNumber1 = new Integer("" + secondNum.charAt(i));
-					int j = firstNumber1 + secondNumber1;
-					if (j < 10) {
-						resultantNumber.append(new String("" + j));
-					} else if (j > 10) {
-						resultantNumber.append(new String(""+j).charAt(1));
-						int value1=new Integer(new String(""+firstNum.charAt(i+1)))+1;
-						firstNum.setCharAt(i + 1, new String("" + value1).charAt(0));
-					} else {
-						resultantNumber.append("0");
-						int value1=new Integer(new String(""+firstNum.charAt(i+1)))+1;
-						firstNum.setCharAt(i + 1, new String("" + value1).charAt(0));
-					}
+				List<String> resultData=new ArrayList<>();
+				for (int i = 0; i < secondNumber.length(); i++) {
+					int num = firstNum.charAt(i) - '0' +secondNum.charAt(i) - '0';
+					int sum = (num +carry)%10;
+					carry = (num+carry) / 10;
+					resultData.add(""+new String(""+sum).charAt(0));
 				}
-				resultantNumber.append(new String(firstNum).substring(i));
-				return resultantNumber.toString();
+				//System.out.println(resultData);
+				int k;
+				for (k = secondNum.length(); k < firstNum.length(); k++) {
+					int num = firstNum.charAt(k) - '0';
+					int sum = (num+carry) % 10;
+					carry = (num+carry) / 10;
+					resultData.add(""+new String(""+sum).charAt(0));
+				}
+				if (carry > 0) {
+					resultData.add(""+new String(""+carry).charAt(0));
+				}
+				String result = new String("");
+				for(String s:resultData) {
+					result=result.concat(s);
+				}
+				return result.toString();
 			}
+
 		}
 		return StringConstanst.emptyString;
 	}
 
 	private String numberSign(String firstNumber, String secondNumber) {
 		if (firstNumber != null && secondNumber != null && firstNumber.length() > 0 && secondNumber.length() > 0) {
-			if(getlargerInteger(firstNumber, secondNumber).charAt(0)=='-')
+			if (getlargerInteger(firstNumber, secondNumber).charAt(0) == '-')
 				return "-";
 		}
 		return "";
