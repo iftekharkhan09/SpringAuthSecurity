@@ -1,10 +1,6 @@
 package com.src.string;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import org.omg.PortableInterceptor.INACTIVE;
-
 public class PrintCountOfString {
 	public static void main(String[] args) {
 		String s = "One Two Three One Two Four";
