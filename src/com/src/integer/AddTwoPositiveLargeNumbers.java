@@ -3,12 +3,12 @@ package com.src.integer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddTwoLargeNumbers {
+public class AddTwoPositiveLargeNumbers {
 	public static void main(String[] args) {
 		String firstNumber = "999";
 		String secondNumber = "9999999";
 		StringBuffer result = new StringBuffer();
-		AddTwoLargeNumbers addTwoLargeNumbers = new AddTwoLargeNumbers();
+		AddTwoPositiveLargeNumbers addTwoLargeNumbers = new AddTwoPositiveLargeNumbers();
 		if (addTwoLargeNumbers.getlargerInteger(firstNumber, secondNumber).equals(firstNumber)) {
 			String reverseResult = addTwoLargeNumbers.addNumbers(firstNumber, secondNumber);
 			result = new StringBuffer(reverseResult).reverse();
@@ -16,10 +16,6 @@ public class AddTwoLargeNumbers {
 			String reverseResult = addTwoLargeNumbers.addNumbers(secondNumber, firstNumber);
 			result = new StringBuffer(reverseResult).reverse();
 		}
-		String sign = addTwoLargeNumbers.numberSign(firstNumber, secondNumber);
-		if (sign.equals("-"))
-			System.out.println("-" + result);
-		else
 			System.out.println(result);
 	}
 
@@ -64,15 +60,6 @@ public class AddTwoLargeNumbers {
 		}
 		return StringConstanst.emptyString;
 	}
-
-	private String numberSign(String firstNumber, String secondNumber) {
-		if (firstNumber != null && secondNumber != null && firstNumber.length() > 0 && secondNumber.length() > 0) {
-			if (getlargerInteger(firstNumber, secondNumber).charAt(0) == '-')
-				return "-";
-		}
-		return "";
-	}
-
 	private String reverse(String string) {
 		StringBuffer stringBuffer = new StringBuffer(string);
 		if (string != null && string.length() > 0) {
