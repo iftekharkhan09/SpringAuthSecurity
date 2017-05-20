@@ -16,7 +16,7 @@ public class AddTwoPositiveLargeNumbers {
 			String reverseResult = addTwoLargeNumbers.addNumbers(secondNumber, firstNumber);
 			result = new StringBuffer(reverseResult).reverse();
 		}
-			System.out.println(result);
+		System.out.println(result);
 	}
 
 	private String addNumbers(String firstNumber, String secondNumber) {
@@ -32,27 +32,26 @@ public class AddTwoPositiveLargeNumbers {
 			if (firstNumber != null && secondNumber != null && firstNumber.length() > 0 && secondNumber.length() > 0) {
 				StringBuffer secondNum = new StringBuffer(reverse(secondNumber));
 				StringBuffer firstNum = new StringBuffer(reverse(firstNumber));
-				List<String> resultData=new ArrayList<>();
+				List<String> resultData = new ArrayList<>();
 				for (int i = 0; i < secondNumber.length(); i++) {
-					int num = firstNum.charAt(i) - '0' +secondNum.charAt(i) - '0';
-					int sum = (num +carry)%10;
-					carry = (num+carry) / 10;
-					resultData.add(""+new String(""+sum).charAt(0));
+					int num = firstNum.charAt(i) - '0' + secondNum.charAt(i) - '0';
+					int sum = (num + carry) % 10;
+					carry = (num + carry) / 10;
+					resultData.add("" + new String("" + sum).charAt(0));
 				}
-				//System.out.println(resultData);
 				int k;
 				for (k = secondNum.length(); k < firstNum.length(); k++) {
 					int num = firstNum.charAt(k) - '0';
-					int sum = (num+carry) % 10;
-					carry = (num+carry) / 10;
-					resultData.add(""+new String(""+sum).charAt(0));
+					int sum = (num + carry) % 10;
+					carry = (num + carry) / 10;
+					resultData.add("" + new String("" + sum).charAt(0));
 				}
 				if (carry > 0) {
-					resultData.add(""+new String(""+carry).charAt(0));
+					resultData.add("" + new String("" + carry).charAt(0));
 				}
 				String result = new String("");
-				for(String s:resultData) {
-					result=result.concat(s);
+				for (String s : resultData) {
+					result = result.concat(s);
 				}
 				return result.toString();
 			}
@@ -60,6 +59,7 @@ public class AddTwoPositiveLargeNumbers {
 		}
 		return StringConstanst.emptyString;
 	}
+
 	private String reverse(String string) {
 		StringBuffer stringBuffer = new StringBuffer(string);
 		if (string != null && string.length() > 0) {
