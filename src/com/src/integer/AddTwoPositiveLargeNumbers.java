@@ -42,7 +42,7 @@ public class AddTwoPositiveLargeNumbers {
 				List<String> resultData = new ArrayList<>();
 				// add the digits one by one and track the carry and add it to
 				// the sum.Iteration only happens till the length of second
-				// number(as the second number is smaller)
+				// number-1(as the second number is smaller)
 				for (int i = 0; i < secondNumber.length(); i++) {
 					int num = firstNum.charAt(i) - '0' + secondNum.charAt(i) - '0';
 					int sum = (num + carry) % 10;
@@ -51,7 +51,7 @@ public class AddTwoPositiveLargeNumbers {
 				}
 				int k;
 				// add digits one by one and track the carry.Iteration happens
-				// from secondnumber's length+1 to the length of first number
+				// from secondnumber's length to the length of first number-1
 				for (k = secondNum.length(); k < firstNum.length(); k++) {
 					int num = firstNum.charAt(k) - '0';
 					int sum = (num + carry) % 10;
