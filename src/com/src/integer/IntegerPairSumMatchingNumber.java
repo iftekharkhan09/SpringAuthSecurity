@@ -12,10 +12,10 @@ public class IntegerPairSumMatchingNumber {
 	}
 
 	private void getMatchingpair(int arr[], int K) {
-		// i points to the last element of the array
-		int j = arr.length - 1;
-		// j points to the first element of the array
+		// i points to the first element of the array
 		int i = 0;
+		// j points to the last element of the array
+		int j = arr.length - 1;
 		// iterate till both pointers(i & j) cross each other
 		while (i != j) {
 			// if sum of the elements pointed by both i & j is greater than the
