@@ -48,20 +48,20 @@ public class DataServiceImpl {
 		SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
 		Session session = sessionFactory.openSession();
 
-		Transaction transaction = session.beginTransaction();
+		//Transaction transaction = session.beginTransaction();
 		session.save(e);
-		transaction.commit();
-		// session.flush();
+		//transaction.commit();
+		 session.flush();
 
 	}
 
 	public void updateEmployee() {
 		SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
 		Session session = sessionFactory.openSession();
-
-		Employee e = session.get(Employee.class, 2);
-		session.close();
+		Employee e = session.get(Employee.class, 3);
 		e.setName("changed!");
+		session.close();
+		
 		Session session1 = sessionFactory.openSession();
 		Transaction transaction = session1.beginTransaction();
 		session1.merge(e);
@@ -69,5 +69,18 @@ public class DataServiceImpl {
 		session1.close();
 
 	}
+
+	public void saveUpdate() {
+		SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		Employee e = session.get(Employee.class, 3);
+		e.setName("changed!");
+		session.saveOrUpdate(e);
+		System.out.println(transaction);
+		transaction.commit();
+		session.close();
+	}
+
 
 }

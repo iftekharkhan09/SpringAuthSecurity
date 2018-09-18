@@ -47,4 +47,9 @@ public class EmployeeController {
 	public void getEmployee() {
 		dataServiceImpl.firstLevelCache();
 	}
+	
+	@GetMapping(value = "/savetest")
+	public void saveorUpdayeEmployee() {
+		dataServiceImpl.saveUpdate();
+	}
 }
